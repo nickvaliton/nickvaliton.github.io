@@ -1,22 +1,632 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Nick Valiton</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nick Valiton — SEO Manager</title>
+  <meta name="description" content="Nick Valiton is an SEO Manager based in Cambridge, MA, specializing in organic growth, AI search, and content strategy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      text-align: center;
-      margin-top: 20vh;
-      background: url('https://images.unsplash.com/photo-1565127803082-69dd82351360?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat fixed;
-      color: #fff;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f4ef;
+      --bg-alt: #eeeae2;
+      --text: #1a1a1a;
+      --text-muted: #6b6560;
+      --accent: #6b8f71;
+      --accent-dark: #4f6e54;
+      --border: #dedad2;
+      --white: #ffffff;
     }
-    h1 { font-size: 3rem; }
-    p { font-size: 1.2rem; opacity: .7; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(247, 244, 239, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent-dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2.5rem 4rem;
+      gap: 4rem;
+    }
+
+    .hero-text {}
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-photo {
+      width: 380px;
+      height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 6px;
+      filter: grayscale(15%);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2.5rem;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-body p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-body p:last-child { margin-bottom: 0; }
+
+    .about-body strong { color: var(--text); font-weight: 500; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg);
+      border-radius: 6px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.25rem;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* EXPERIENCE */
+    .experience { background: var(--bg); }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+
+    .exp-meta {
+      padding-top: 0.2rem;
+    }
+
+    .exp-period {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-company {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .exp-location {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .exp-content {}
+
+    .exp-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .exp-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+      background: var(--bg-alt);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    /* PROJECT */
+    .project { background: var(--white); }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3.5rem;
+    }
+
+    .project-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 0.975rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .project-preview {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .project-preview img {
+      width: 100%;
+      display: block;
+    }
+
+    .project-preview-placeholder {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* CONTACT / FOOTER */
+    .contact {
+      background: var(--text);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .contact .section-label { color: var(--accent); }
+
+    .contact .section-title { color: var(--white); margin-bottom: 1.25rem; }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 5rem;
+    }
+
+    .btn-contact-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-contact-primary:hover { background: var(--accent-dark); }
+
+    .btn-contact-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-contact-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: rgba(255,255,255,0.7); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.25rem 3rem;
+        gap: 2.5rem;
+        min-height: auto;
+      }
+
+      .hero-image { justify-content: flex-start; order: -1; }
+      .hero-photo { width: 100%; height: 300px; }
+
+      section { padding: 4rem 1.25rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+      .project-card { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
   </style>
 </head>
 <body>
-  <h1>Nicholas R Valiton</h1>
-  <p>Personal site coming soon.</p>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Nick Valiton</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#project">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">SEO Manager · Cambridge, MA</span>
+      <h1 class="hero-name">Nick<br>Valiton</h1>
+      <p class="hero-tagline">Scaling organic growth at the intersection of search, content, and AI — for brands that want to be found, and remembered.</p>
+      <div class="hero-actions">
+        <a href="Nick_Valiton_Resume.pdf" download class="btn btn-primary">Download Resume</a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="headshot.jpg" alt="Nick Valiton" class="hero-photo">
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="section-label">About</p>
+          <h2 class="section-title">Strategist. Writer.<br>Builder.</h2>
+          <div class="about-body">
+            <p>I'm an SEO Manager with <strong>6+ years of experience</strong> helping enterprise clients and growing brands earn visibility in an increasingly AI-driven search landscape. My work sits at the crossroads of strategy, content, and data — translating complex signals into clear paths to growth.</p>
+            <p>Currently leading SEO at <strong>Synapse SEM</strong> in Boston, where I manage a team of analysts and direct strategy for 12+ clients across industries. I've also written two industry eBooks on the role of AI in SEO — because understanding what's changing matters as much as executing on it.</p>
+            <p>Outside of work, I volunteer on the Executive Board of the <strong>Heart of New England Council, Scouting America</strong>, and spend time on the things that keep me grounded: lighthouse photography, bonsai, golf, and building for the web.</p>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Years in SEO & digital strategy</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">12+</div>
+            <div class="stat-label">Active client accounts managed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">108%</div>
+            <div class="stat-label">YoY page 1 ranking improvement for clients</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Published eBooks on AI in SEO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience" id="experience">
+    <div class="section-inner">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Where I've worked</h2>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">2023 – Present</div>
+            <div class="exp-company">Synapse SEM</div>
+            <div class="exp-location">Boston, MA</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">SEO Manager</div>
+            <p class="exp-desc">Direct SEO strategy for 12+ clients, leading a team of 6 analysts. Improved client page 1 rankings by 108% YoY. Developed a YouTube SEO service driving $8k+ in incremental MRR. Built and standardized Looker Studio reporting dashboards across SEO, PPC, and AI search. Leading the agency's AI-first evolution, including authoring two eBooks on AI in SEO and rolling out integrated AI/SEO services with an average +25% revenue upsell.</p>
+            <div class="exp-tags">
+              <span class="tag">AI Search</span>
+              <span class="tag">Content Strategy</span>
+              <span class="tag">Team Leadership</span>
+              <span class="tag">Looker Studio</span>
+              <span class="tag">Local SEO</span>
+              <span class="tag">SerpAPI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">2025 – Present</div>
+            <div class="exp-company">Heart of New England Council, Scouting America</div>
+            <div class="exp-location">Rutland, MA</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">VP of Marketing & Communications</div>
+            <p class="exp-desc">Executive Board Member and Alumni Association Chair. Leading strategic marketing and internal communications for central Massachusetts Scouting programs. Managing a 5-member committee executing cross-channel campaigns targeting 10% YoY membership growth.</p>
+            <div class="exp-tags">
+              <span class="tag">Nonprofit Marketing</span>
+              <span class="tag">Board Leadership</span>
+              <span class="tag">Community Engagement</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">2019 – 2023</div>
+            <div class="exp-company">Digitas</div>
+            <div class="exp-location">Boston, MA</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">Intern → Analyst → Senior Analyst</div>
+            <p class="exp-desc">Led SEO strategy and audits for 3+ enterprise clients. Secured $200k in agency revenue by developing an SEO scope proposal for a global vitamin brand. Selected to represent the agency in the 2022 Institute of Advanced Advertising Studies Program.</p>
+            <div class="exp-tags">
+              <span class="tag">Enterprise SEO</span>
+              <span class="tag">Technical Audits</span>
+              <span class="tag">Business Development</span>
+              <span class="tag">Stakeholder Presentations</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT -->
+  <section class="project" id="project">
+    <div class="section-inner">
+      <p class="section-label">Featured Project</p>
+      <h2 class="section-title">Built from scratch</h2>
+      <div class="project-card">
+        <div>
+          <p class="project-label">Side Project · Ongoing</p>
+          <h3 class="project-title">Lighthouse New England</h3>
+          <p class="project-desc">A passion project born from years of photographing New England lighthouses. I built and manage lighthousenewengland.com — a resource for lighthouse history, photography, and travel across the six-state region. Equal parts hobby and proof of concept for the SEO and content principles I apply professionally.</p>
+          <a href="https://lighthousenewengland.com" target="_blank" rel="noopener" class="btn btn-primary">Visit the site ↗</a>
+        </div>
+        <div class="project-preview">
+          <img src="lne-preview.png" alt="Lighthouse New England website screenshot">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's talk</h2>
+      <p class="contact-sub">Whether you have a project in mind, a question about SEO, or just want to connect.</p>
+      <div class="contact-links">
+        <a href="mailto:nickvaliton@gmail.com" class="btn btn-contact-primary">nickvaliton@gmail.com</a>
+        <a href="https://linkedin.com/in/nick-valiton" target="_blank" rel="noopener" class="btn btn-contact-outline">LinkedIn ↗</a>
+        <a href="Nick_Valiton_Resume.pdf" download class="btn btn-contact-outline">Resume PDF</a>
+      </div>
+      <footer>
+        <span>© 2026 Nick Valiton</span>
+        <span>Cambridge, MA</span>
+      </footer>
+    </div>
+  </section>
+
 </body>
 </html>
